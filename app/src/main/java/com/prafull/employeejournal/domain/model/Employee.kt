@@ -1,7 +1,7 @@
 package com.prafull.employeejournal.domain.model
 
 data class Employee(
-    val name: String = "",
-    val location: String = "",
-    val email: String = ""
+    var name: String = "",
+    var location: String = "",
+    var email: String = ""
 )

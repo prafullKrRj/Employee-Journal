@@ -25,7 +25,7 @@ class EmployeeRepoImp @Inject constructor(
         }
     }
     override suspend fun addEmployee(employee: Employee) {
-        apiService.saveEmployee(employee)
+         apiService.saveEmployee(employee)
     }
 
     override suspend fun deleteEmp(id: Long) {

@@ -8,6 +8,7 @@ import com.prafull.employeejournal.domain.model.Employee
 import com.prafull.employeejournal.domain.model.EmployeeDto
 import com.prafull.employeejournal.domain.repositories.EmployeeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -51,10 +52,19 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
     fun delete(employee: EmployeeDto) {
         viewModelScope.launch {
             repository.deleteEmp(employee.id)
+            getAllEmployees()
+        }
+    }
+    fun saveEmployee(name: String, email: String, location: String) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val flag = repository.addEmployee(
+                Employee(
+                    name = name, email = email, location = location
+                )
+            )
             getAllEmployees()
         }
     }
